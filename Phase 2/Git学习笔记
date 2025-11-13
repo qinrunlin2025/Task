@@ -29,3 +29,7 @@
      ssh-keygen -t ed25519 -C "202521101065@mail1.scuec.edu.cn"
      # 复制公钥到GitHub（Settings → SSH and GPG keys）
      cat ~/.ssh/id_ed25519.pub
+远程仓库已存在：remote origin already exists
+解决：修改关联地址
+bash
+git remote set-url origin git@github.com:qinrunlin2025/Task.git
