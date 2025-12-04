@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页设计优化</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入FontAwesome图标库，为网页提供专业图标功能 -->
+   <style>
+        /* 重置和基础样式 */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        body { 
+            background: #f5f5f5; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        .container { 
+            width: 100%; 
+            max-width: 1200px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        /* 导航栏样式 */
+        .navbar { 
+            display: flex; 
+            background: #FF8C00; 
+            width: 100%; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            z-index: 10; 
+        }
+        
+        .nav-item { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            text-decoration: none; 
+            padding: 16px 20px; 
+            transition: all 0.3s; 
+            font-weight: 500; 
+            font-size: 16px; 
+            flex: 1; 
+            white-space: nowrap; 
+            border-right: 1px solid rgba(255, 255, 255, 0.2); 
+        }
+        
+        .nav-item:last-child { border-right: none; }
+        .nav-item:hover { background: rgba(255, 255, 255, 0.15); }
+        .nav-item.active { background: rgba(255, 255, 255, 0.2); }
+        
+        .nav-item:first-child::after { 
+            content: "▼"; 
+            font-size: 12px; 
+            margin-left: 8px; 
+            color: rgba(255, 255, 255, 0.9); 
+        }
+        
+        .nav-item i { margin-left: 8px; font-size: 16px; }
+        .newthread { color: #6A8EAE; font-weight: 600; }
+        
+        /* 主内容区域 */
+        .main-content { 
+            width: 100%; 
+            min-height: calc(100vh - 60px); 
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        .background-area { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: url('image/background_Homepage.png') top center/cover no-repeat; 
+            z-index: 1; 
+        }
+        
+        .design-container { 
+            position: absolute; 
+            top: 25%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 40%; 
+            max-width: 350px; 
+            height: 180px; 
+            z-index: 2; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: rgba(255, 255, 255, 0.7); 
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            padding: 10px; 
+        }
+        
+        .design-image { 
+            width: 100%; 
+            height: 100%; 
+            background: url('image/decoration_Geek.png') center/contain no-repeat; 
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar { flex-wrap: wrap; }
+            .nav-item { flex: 1 1 50%; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+            .design-container { width: 60%; height: 150px; top: 30%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="#" class="nav-item">Introduction</a>
+            <a href="#" class="nav-item">About US <i class="fas fa-user"></i></a>
+            <a href="#" class="nav-item newthread active">NewThread <i class="fas fa-home"></i></a>
+            <a href="#" class="nav-item">Contact Us <i class="fas fa-phone"></i></a>
+            <a href="#" class="nav-item">Q&A <i class="fas fa-comments"></i></a>
+        </nav>
+        
+        <div class="main-content">
+            <div class="background-area"></div>
+            <div class="design-container">
+                <div class="design-image"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 导航栏交互
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
