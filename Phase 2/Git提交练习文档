@@ -1,0 +1,20 @@
+# Git提交练习文档
+
+## 练习目标
+通过实操掌握Git“本地修改→提交→推送”的核心流程，完成`hello.md`文件的远程仓库同步。
+
+
+## 练习步骤
+### 步骤1：关联远程仓库
+打开Git Bash，进入本地项目目录，执行以下命令（替换为你的仓库地址）：
+```bash
+# 关联GitHub远程仓库
+git remote add origin git@github.com:qinrunlin2025/Task.git
+# 创建文件并写入内容（替换“你的姓名”）
+echo "# Hello 你的姓名" > hello.md
+# 加入暂存区
+git add hello.md
+
+# 提交到本地仓库（备注需清晰描述修改）
+git commit -m "feat: 添加hello.md文件"
+git push origin main

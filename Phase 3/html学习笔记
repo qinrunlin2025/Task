@@ -1,0 +1,209 @@
+<!-- 一. -->
+<!-- HTML，即超文本标记语言（HyperText Markup Language） ，
+ 是用于创建网页结构和内容的标记语言。它就像是搭建房屋的砖块和框架，
+ 定义了网页中各个部分的结构，比如标题、段落、图片、链接等。
+
+ 常见的 HTML 基础标签有：
+标题标签：<h1> - <h6>，从<h1>到<h6>重要性依次降低，字体大小也逐渐减小，用于定义不同级别的标题。
+    比如<h1>我的精彩博客</h1>，会显示为一个大字号的主标题 。
+段落标签：<p>，用于定义段落，包裹一段独立的文本区域，
+    如<p>这是一段精彩的文字内容。</p> 。
+链接标签：<a>，用于创建超链接，通过href属性指定链接的目标地址，
+    例如<a href="Example Domain">点击访问示例网站</a> 。
+图像标签：<img>，通过src属性指定图像的路径，将图片插入网页，
+如<img src="image.jpg" alt="示例图片">，alt属性用于在图片无法显示时提供替代文本 。
+列表标签：有序列表<ol>和无序列表<ul>，列表项使用<li>标签。
+    比如无序列表<ul><li>苹果</li><li>香蕉</li></ul> ，会显示为一个带有项目符号的列表。 -->
+
+<!-- 二. -->
+<!-- HTML 标签入门 -->
+<!-- <h1>一级标题</h1>
+<h2>二级标题</h2>
+<h3>三级标题</h3>
+<h4>四级标题</h4>
+<h5>五级标题</h5>
+<h6>六级标题</h6> 
+<p>这是第一段内容。</p>
+<p>这是第二段内容。</p>
+<html>
+  <head>网页的脑袋（标题、设置）</head>
+  <body>网页的身体（内容、图片、文字）</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <title>我的第一个网页</title>
+    </head>
+    <body>
+        <h1>你好，世界！</h1>
+        <p>这是我用 HTML 写的第一个网页。</p>
+    </body>
+</html>
+<!-- <!DOCTYPE html>：声明这是一封HTML格式的信。
+<html lang="zh-CN">：在信封上注明，这封信的主要语言是中文。
+<meta charset="UTF-8" />：在信的开头注明，这封信是用“万能密码本”（UTF-8）写的 -->
+
+<!-- 三. -->
+<!-- HTML，即超文本标记语言（HyperText Markup Language） ，
+ 是用于创建网页结构和内容的标记语言。它就像是搭建房屋的砖块和框架，
+ 定义了网页中各个部分的结构，比如标题、段落、图片、链接等。
+ 常见的 HTML 基础标签有：
+标题标签：<h1> - <h6>，从<h1>到<h6>重要性依次降低，字体大小也逐渐减小，用于定义不同级别的标题。
+    比如<h1>我的精彩博客</h1>，会显示为一个大字号的主标题 。
+段落标签：<p>，用于定义段落，包裹一段独立的文本区域，
+    如<p>这是一段精彩的文字内容。</p> 。
+链接标签：<a>，用于创建超链接，通过href属性指定链接的目标地址，
+    例如<a href="Example Domain">点击访问示例网站</a> 。
+图像标签：<img>，通过src属性指定图像的路径，将图片插入网页，
+如<img src="image.jpg" alt="示例图片">，alt属性用于在图片无法显示时提供替代文本 。
+列表标签：有序列表<ol>和无序列表<ul>，列表项使用<li>标签。
+    比如无序列表<ul><li>苹果</li><li>香蕉</li></ul> ，会显示为一个带有项目符号的列表。 -->
+
+
+<!-- 四.  -->
+   <!-- （一）语义化标签使用 -->
+<!-- <nav>标签专门用来定义页面的导航区域，搜索引擎和屏幕阅读器等工具能更好地识别和处理。  -->
+<header>
+   <h1>我的技术博客</h1> 
+   <nav>
+    <ul>
+       <li><a href="#">首页</a></li>
+       <li><a href="#">文章</a></li>
+       <li><a href="#">关于</a></li>
+    </ul>
+   </nav>
+</header>
+<!-- <article>标签表示页面中的独立内容块，比如一篇博客文章、新闻报道等。 -->
+<article>
+    <h2>HTML5语义化标签的应用</h2>
+    <p>在现代网页开发中，HTML5语义化标签起着至关重要的作用……</p>
+</article>
+<!-- <section>标签用于表示页面中的某个部分，通常包含一个主题内容，让文档结构更加清晰。 -->
+<section>
+    <h2>关于我们</h2>
+    <p>我们是一个专注于技术分享的团队……</p>
+</section>
+<!-- （二）表单与多媒体标签进阶 -->
+<!-- email类型的输入框，在提交表单时会自动验证输入内容是否符合邮箱格式： -->
+ <form>
+    <label for="email">邮箱：</label>
+    <input type="email" id="email" name="email">
+    <input type="submit" value="提交">
+ </form>
+ <!-- date类型则提供了日期选择器，方便用户选择日期，极大地提高了输入效率和准确性： -->
+ <form>
+    <label for="birthdate">出生日期：</label>
+    <input type="date" id="birthdate" name="birthdate">
+ </form>
+<!-- autofocus可以使页面加载时输入框自动获取焦点，例如搜索框可以设置这个属性，方便用户直接输入搜索内容
+required表示该输入框为必填项，提交表单时如果未填写会提示用户
+placeholder用于提供输入提示，在输入框为空时显示提示文本，引导用户输入正确格式的内容 。 -->
+<!-- 在多媒体展示方面，HTML5 的<audio>和<video>标签让我们可以轻松在网页中嵌入音频和视频。 -->
+</video>
+<audio src="music.mp3" controls>
+    您的浏览器不支持音频播放。
+</audio>
+<video src="video.mp4" controls width="640" height="360">
+    您的浏览器不支持视频播放。
+</video>
+<!-- src属性指定音频或视频文件的路径
+controls属性显示播放控件，让用户可以控制播放、暂停、音量等操作 。
+width和height属性则用于设置视频播放器的宽度和高度。
+还可以通过autoplay属性让音频或视频自动播放
+（不过一些浏览器可能会限制自动播放，以提升用户体验）
+loop属性实现循环播放，muted属性使音频或视频静音播放 。 -->
+<video src="video.mp4" autoplay loop muted controls>
+
+</video>
+<!-- 为了确保音频和视频在不同浏览器中都能正常播放，还可以使用<source>标签提供多个源文件 -->
+<video controls>
+    <source src="video.mp4" type="video/mp4">
+    <source src="video.ogg" type="video/ogg">
+    您的浏览器不支持视频标签。
+</video>
+<!-- 这样，浏览器会根据自身支持的格式选择合适的源文件进行播放，大大增强了多媒体展示的兼容性 。 -->
+
+<!-- 五. -->
+ <!-- 首先，创建一个 HTML 文件，定义基本的页面结构 。
+ 使用 HTML5 的语义化标签来构建页面框架，使结构更加清晰： -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人博客</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>我的技术博客</h1>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">文章</a></li>
+                <li><a href="#">关于</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="blog-post">
+        <h2>HTML5语义化标签的应用</h2>
+        <p class="post-meta">作者：张三 &nbsp;&nbsp; 发布日期：2024年11月10日</p>
+        <p>在现代网页开发中，HTML5语义化标签起着至关重要的作用……</p>
+        <a href="#" class="read-more">阅读全文</a>
+    </section>
+        <section class="blog-post">
+    <h2>CSS布局技巧大揭秘</h2>
+    <p class="post-meta">作者：张三&nbsp;&nbsp;发布日期：<time datetime="2024-11-08">2024年11月8日</time></p>
+    <p>Flexbox和Grid布局让网页布局变得更加灵活和高效……</p>
+    <a href="/posts/css-layout-tips.html" class="read-more">阅读全文</a>
+    </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 我的个人博客. 版权所有.</p>
+    </footer>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人博客</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>我的技术博客</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="articles.html">文章</a></li>
+                <li><a href="about.html">关于</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article class="blog-post">
+            <h2>HTML5语义化标签的应用</h2>
+            <p class="post-meta">作者：张三&nbsp;&nbsp;发布日期：2024年11月10日</p>
+            <p>在现代网页开发中，HTML5语义化标签起着至关重要的作用……</p>
+            <a href="/posts/html5-semantic.html" class="read-more">阅读全文</a>
+        </article>
+        <article class="blog-post">
+            <h2>CSS布局技巧大揭秘</h2>
+            <p class="post-meta">作者：张三&nbsp;&nbsp;发布日期：<time datetime="2024-11-08">2024年11月8日</time></p>
+            <p>Flexbox和Grid布局让网页布局变得更加灵活和高效……</p>
+            <a href="/posts/css-layout-tips.html" class="read-more">阅读全文</a>
+        </article>
+    </main>
+    <footer>
+        <p>&copy; 2024 我的个人博客. 版权所有.</p>
+    </footer>
+</body>
+</html>
+<!-- 在这个 HTML 结构中，<header>标签包含了博客的标题和导航栏，
+    <main>标签包裹了主要的文章内容区域，每个文章使用<section>标签进行划分 。
+        <footer>标签则定义了页面的底部版权信息 。 -->
+

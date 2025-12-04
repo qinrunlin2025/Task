@@ -1,0 +1,281 @@
+/* 一. */
+/* CSS，层叠样式表（Cascading Style Sheets） ，
+则是负责美化网页，控制网页的外观和布局，就像是给房屋进行装修和装饰。
+CSS 的基本语法由选择器和声明块组成：
+选择器 {
+属性: 值;
+属性: 值;
+} */
+p{
+    color: blue;
+    font-size: 16px;
+}
+
+/* 二. */
+/* （一）布局技巧 */
+/* Flexbox 主要用于一维布局，即行或列方向的布局。
+它通过将一个容器设置为 Flex 容器，使子元素成为 Flex 项，
+从而可以方便地控制它们的排列和对齐方式。
+比如，创建一个水平排列且居中对齐的导航栏： */
+<nav class="nav">
+<a href="#" class="nav-item">首页</a>
+<a href="#" class="nav-item">文章</a>
+<a href="#" class="nav-item">关于</a>
+</nav>
+/* 这不是一个会报错的语法问题，而是一个需要完善的逻辑和功能问题。
+将 href="#"替换为真实的URL后，导航栏才能真正发挥作用。 */
+<nav class="nav">
+    <a href="index.html" class="nav-item">首页</a> 
+    <a href="articles.html" class="nav-item">文章</a>
+    <a href="about.html" class="nav-item">关于</a>
+</nav>
+
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 您圈出的 .nav和 .nav-item这部分 CSS 代码语法完全正确，没有问题。 */
+.nav {
+    display: flex;           /* 启用Flexbox布局 */
+    justify-content: center; /* 水平居中排列子元素 */
+    align-items: center;     /* 垂直居中排列子元素 */
+}
+.nav-item {
+    /* 这里等待编写导航项的具体样式 */
+}
+.nav-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* display: flex将导航栏容器设为 Flex 容器 。
+justify-content: center用于水平居中对齐 Flex 项，
+align-items: center用于垂直居中对齐 Flex 项 。
+通过这些属性，我们可以轻松实现各种常见的一维布局效果，如左右布局、顶部固定底部固定中间自适应等。 */
+
+/* Grid 布局则是二维布局系统，能同时处理行和列，适用于创建复杂的网页布局，如多列布局、网格状布局等。
+例如，创建一个简单的网格布局： */
+<div class="grid-container">
+<div class="grid-item">1</div>
+<div class="grid-item">2</div>
+<div class="grid-item">3</div>
+<div class="grid-item">4</div>
+</div>
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+.grid-item{
+    background-color: lightblue;
+    padding: 20px;
+    text-align: center;
+}
+/* display: grid将容器设为 Grid 容器 。
+grid-template-columns: repeat(2, 1fr)定义了网格的列数为 2 列，并且每列宽度相等，
+1fr表示一个灵活的分数单位，会根据可用空间自动分配宽度 。
+grid-gap: 10px设置了网格项之间的间隙为 10 像素 。
+通过grid-template-rows属性还可以定义行的相关属性，
+通过grid-area属性可以精确指定每个网格项的位置 。比如： */
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100px auto;
+    grid-template-areas:
+    "header header"
+    "sidebar main";
+    grid-gap: 10px;
+}
+.header{
+    grid-area: header;
+}
+.sidebar{
+    grid-area: sidebar;
+}
+.main{
+    grid-area: main;
+}
+/* <div class="grid-container">
+  <div class="header">顶部导航</div>
+  <div class="sidebar">侧边栏</div>
+  <div class="main">主要内容</div>
+</div> */
+
+/* （二）选择器深度运用 */
+/* 属性选择器可以根据元素的属性及属性值来选择元素。比如，选择所有带有href属性的a标签，并设置其样式： */
+a[href]{
+    color: blue;
+    text-decoration: underline;
+}
+/* 还可以进一步筛选属性值，如选择href属性值以.pdf结尾的链接： */
+a[href$=".pdf"]{
+    color: green;
+}
+/* 伪类选择器用于选择处于特定状态的元素，比如链接的不同状态： */
+a:link{
+   color: blue; 
+}
+a:visited{
+    color: purple;
+}
+a:hover{
+    color: red;
+    text-decoration: none;
+}
+a:active{
+    color: orange;
+}
+/* :hover表示鼠标悬停在元素上时的状态，
+:active表示元素被激活（如点击按下）时的状态 。
+还有一些常用的伪类，:first-child选择某个元素的第一个子元素，
+:last-child选择最后一个子元素 。
+例如，使列表的第一个和最后一个列表项显示不同样式： */
+ul li:first-child{
+    font-weight: bold;
+}
+ul li:last-child{
+    color: gray;
+}
+/* :nth-child(n)可以选择第n个子元素，n可以是数字、
+关键字（如odd表示奇数，even表示偶数 ）或表达式。
+比如，使表格的偶数行显示不同背景颜色： */
+table tr:nth-child(even){
+    background-color: lightgray;
+}
+/* 伪元素选择器则用于创建一些虚拟的元素，它们并不存在于 HTML 文档中，但可以通过 CSS 来控制其样式。
+:before和:after是最常用的伪元素选择器，需要配合content属性使用 。比如，在段落开头添加一个图标： */
+p:before{
+    content: url(icon.png);
+    margin-right: 5px;
+}
+/* :first-letter用于选择元素的第一个字母，
+:first-line用于选择元素的第一行 。
+例如，将段落的第一个字母放大并改变颜色： */
+p:first-letter{
+    font-size: 2em;
+    color: red;
+}
+/* （三）动画与过渡效果 */
+/* CSS 过渡（Transition）用于在元素的两种不同状态之间实现平滑过渡效果，
+通常用于响应用户的交互行为，如悬停、聚焦、点击等 。
+比如，当鼠标悬停在按钮上时，让按钮的背景颜色和文字颜色渐变过渡： */
+<button class="button">点击我</button>
+.button{
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.button:hover{
+    background-color: red;
+    color: black;
+}
+/* transition属性指定了要过渡的属性（background-color和color）、
+过渡持续时间（0.3s）和过渡的速度曲线（ease，表示缓动效果 ）。
+当鼠标悬停在按钮上时，按钮的背景颜色和文字颜色会在 0.3 秒内平滑过渡到新的颜色。 */
+/* CSS 动画（Animation）则可以实现更复杂的动态效果，
+通过定义关键帧（@keyframes）来描述动画的各个阶段和状态 。
+比如，创建一个让元素左右移动的动画： */
+<div class="animated-element"></div>
+.animated-element{
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    animation: move 3s ease-in-out infinite alternate;
+}
+@keyframes move{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+       transform: translateX(200px); 
+    }
+}
+/* @keyframes move定义了一个名为move的动画关键帧 。
+在0%的阶段，元素的transform: translateX(0)表示水平位置不变；
+在100%的阶段，transform: translateX(200px)表示元素水平向右移动 200 像素 。
+animation属性将这个动画应用到元素上，
+animation-name指定动画名称为move，
+animation-duration设置动画持续时间为 3 秒，
+animation-timing-function定义动画的速度曲线为ease-in-out（缓入缓出 ），
+animation-iteration-count设置动画播放次数为infinite（无限次 ），
+animation-direction设置动画方向为alternate（交替反向播放 ），
+这样元素就会在 3 秒内不断左右移动。
+还可以通过animation-delay属性设置动画开始前的延迟时间，
+通过animation-play-state属性控制动画的播放和暂停状态 ，比如： */
+.animated-element:hover{
+    animation-play-state: paused;
+}
+/* 当鼠标悬停在元素上时，动画会暂停播放 。 */
+
+/* 全局样式 */
+body{
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+header{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li{
+    display: inline;
+    margin-right: 20px;
+}
+nav ul li{
+    color: white;
+    text-decoration: none;
+}
+nav ul li a:hover{
+    text-decoration: underline;
+}
+main{
+    max-width: 800px;
+    margin: 0 auto;
+    padding:20px;
+}
+.blog-post{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.post-meta{
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.read-more{
+    display: inline-block;
+    background-color: #333;
+    color:white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.read-more:hover{
+    background-color: #555;
+}
+footer{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+/* 这段 CSS 代码设置了整体的页面字体、行高，
+以及各个区域的背景颜色、文本颜色、边距、内边距等样式 。
+通过hover伪类为导航链接和阅读全文按钮添加了交互效果，
+当鼠标悬停时，链接会出现下划线，按钮背景颜色会改变 。
+通过这样的 HTML 和 CSS 代码编写，一个简单的个人博客页面就搭建完成了，
+它不仅结构清晰，而且具有一定的美观度和交互性 。 */
