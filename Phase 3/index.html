@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一行代码，一段逻辑，一个可触达的世界。</title>
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .dark-mode {
+            background: #1a1a2e;
+            color: #e6e6e6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 28px;
+            transition: transform 0.3s;
+        }
+        
+        .dark-mode h1 {
+            color: #ecf0f1;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        .dark-mode .subtitle {
+            color: #bdc3c7;
+        }
+        
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .hobby-card {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .dark-mode .hobby-card {
+            background: #16213e;
+        }
+        
+        .hobby-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .hobby-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .hobby-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 15px;
+        }
+        
+        .card-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .card-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+            transition: transform 0.3s;
+        }
+        
+        .hobby-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .eating .card-icon { background: #e74c3c; }
+        .drinking .card-icon { background: #9b59b6; }
+        .tea .card-icon { background: #2ecc71; }
+        .photography .card-icon { background: #f39c12; }
+        .running .card-icon { background: #e91e63; }
+        .reading .card-icon { background: #3498db; }
+        
+        .card-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .card-desc {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .dark-mode .card-desc {
+            color: #bdc3c7;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: #777;
+            font-size: 12px;
+            border-left: 2px solid #eee;
+            padding-left: 8px;
+            transition: all 0.3s;
+        }
+        
+        .dark-mode .quote {
+            color: #95a5a6;
+            border-left-color: #34495e;
+        }
+        
+        .hobby-card:hover .quote {
+            border-left-color: #2c3e50;
+            color: #2c3e50;
+        }
+        
+        .dark-mode .hobby-card:hover .quote {
+            border-left-color: #ecf0f1;
+            color: #ecf0f1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        
+        .dark-mode footer {
+            color: #bdc3c7;
+        }
+        
+        footer.visible {
+            opacity: 1;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 100;
+            transition: transform 0.3s;
+        }
+        
+        .dark-mode .theme-toggle {
+            background: #16213e;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .hobby-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+        
+        <header>
+            <h1 id="dynamicTitle">一行代码，一段逻辑，一个可触达的世界。</h1>
+            <p class="subtitle">代码构筑视界</p>
+        </header>
+        
+        <div class="hobbies">
+            <!-- 美食 -->
+            <div class="hobby-card eating">
+                <img src="images/美食.jpg" alt="美食">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="card-icon">🍽️</div>
+                        <div class="card-name">食欲启示录</div>
+                    </div>
+                    <p class="card-desc">美食，是抵达幸福的最短路径。</p>
+                    <div class="quote">"下晚自习满脑子都是大口吃火鸡面卷"</div>
+                </div>
+            </div>
+            
+            <!-- 美酒 -->
+            <div class="hobby-card drinking">
+                <img src="images/美酒.jpg" alt="美酒">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="card-icon">🍷</div>
+                        <div class="card-name">微醺絮语</div>
+                    </div>
+                    <p class="card-desc">敬你，也敬坦荡的我们。</p>
+                    <div class="quote">"酒逢知己千杯少"</div>
+                </div>
+            </div>
+            
+            <!-- 茶艺 -->
+            <div class="hobby-card tea">
+                <img src="images/茶艺.jpg" alt="茶艺">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="card-icon">🍵</div>
+                        <div class="card-name">茶香心境</div>
+                    </div>
+                    <p class="card-desc">一壶清茶，半日闲情，沉淀思绪。</p>
+                    <div class="quote">"用一杯茶的功夫，与作业短暂失联。"</div>
+                </div>
+            </div>
+            
+            <!-- 摄影 -->
+            <div class="hobby-card photography">
+                <img src="images/摄影.jpg" alt="摄影">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="card-icon">📷</div>
+                        <div class="card-name">时间保管员</div>
+                    </div>
+                    <p class="card-desc">用镜头捕捉美好，让易逝成为永恒。</p>
+                    <div class="quote">"快门按下，即是此刻存档。"</div>
+                </div>
+            </div>
+            
+            <!-- 跑步 -->
+            <div class="hobby-card running">
+                <img src="images/跑步.jpg" alt="跑步">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="card-icon">🏃</div>
+                        <div class="card-name">奔跑自由</div>
+                    </div>
+                    <p class="card-desc">用身体的极限，去兑换心灵的辽阔。</p>
+                    <div class="quote">"奔跑时，世界都是你的"</div>
+                </div>
+            </div>
+            
+            <!-- 阅读 -->
+            <div class="hobby-card reading">
+                <img src="images/阅读.jpg" alt="阅读">
+                <div class="card-content">
+                    <div class="card-title">
+                        <div class="card-icon">📚</div>
+                        <div class="card-name">文字避难所</div>
+                    </div>
+                    <p class="card-desc">在另一个世界，当另一个自己。</p>
+                    <div class="quote">"书页之内，是我坚不可摧的城邦。"</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>这里，是逻辑与浪漫的和解之地</p>
+        </footer>
+    </div>
+
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+        
+        // 滚动动画效果
+        function checkVisibility() {
+            document.querySelectorAll('.hobby-card, footer').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        
+        // 卡片点击效果
+        document.querySelectorAll('.hobby-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => this.style.transform = '', 300);
+            });
+        });
+        
+        // 初始化
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility);
+    </script>
+</body>
+</html>
